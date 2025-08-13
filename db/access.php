@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Availability plugin - Version file
+ * Availability plugin - Capability definitions
  *
  * @package    availability_plugin
  * @copyright  2025 Mahmoud Chehada, ssystems GmbH <mchehada@ssystems.de>
@@ -24,9 +24,10 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'availability_plugin';
-$plugin->version = 2024100700;
-$plugin->release = 'v4.5-r1';
-$plugin->requires = 2024100700;
-$plugin->supported = [405, 405];
-$plugin->maturity = MATURITY_STABLE;
+$capabilities = [
+    'availability/plugin:addinstance' => [
+        'captype' => 'write',
+        'riskbitmask' => 0,
+        'contextlevel' => CONTEXT_MODULE,
+    ],
+];
