@@ -15,14 +15,20 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Local plugin 'Guest redirect' - Version file.
+ * Availability plugin - Language pack
  *
  * @package    availability_plugin
  * @copyright  2025 Mahmoud Chehada, ssystems GmbH <mchehada@ssystems.de>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Available plugins';
-$string['title'] = 'Available plugins';
-$string['description'] = 'This section is only visible if at least one activity in the section uses a plugin that is installed on this Moodle site.';
+$string['description'] = 'Requires a plugin to be installed.';
+$string['descriptionwithvalue'] = 'The plugin <em>{$a}</em> is installed.';
+$string['missingpluginname'] = 'No plugin name specified';
+$string['plugin:addinstance'] = 'Add "Installed plugin" condition to activities';
+$string['pluginname'] = 'Restriction by installed plugin';
+$string['pluginnameinput'] = 'Technical plugin name (e.g. mod_assign)';
+$string['privacy:metadata'] = 'The "restriction by installed plugin" condition does not store any personal data.';
+$string['title'] = 'Installed plugin';

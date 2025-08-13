@@ -15,18 +15,30 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Availability plugin - Version file
+ * Availability plugin - Privacy provider
  *
  * @package    availability_plugin
  * @copyright  2025 Mahmoud Chehada, ssystems GmbH <mchehada@ssystems.de>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+namespace availability_plugin\privacy;
 
-$plugin->component = 'availability_plugin';
-$plugin->version = 2024100700;
-$plugin->release = 'v4.5-r1';
-$plugin->requires = 2024100700;
-$plugin->supported = [405, 405];
-$plugin->maturity = MATURITY_STABLE;
+/**
+ * Privacy Subsystem implementing null_provider.
+ *
+ * @package    availability_plugin
+ * @copyright  2025 Mahmoud Chehada, ssystems Gmbh<mchehada@ssystems.de>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return string
+     */
+    public static function get_reason(): string {
+        return 'privacy:metadata';
+    }
+}
