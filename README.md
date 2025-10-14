@@ -1,7 +1,7 @@
 moodle-availability_plugin
 ==========================
 
-[![Moodle Plugin CI](https://github.com/ssystems-de/moodle-availability_plugin/actions/workflows/moodle-plugin-ci.yml/badge.svg?branch=main)](https://github.com/ssystems-de/moodle-availability_plugin/actions?query=workflow%3A%22Moodle+Plugin+CI%22+branch%3Amain)
+[![Moodle Plugin CI](https://github.com/ssystems-de/moodle-availability_plugin/actions/workflows/moodle-plugin-ci.yml/badge.svg?branch=MOODLE_405_STABLE)](https://github.com/ssystems-de/moodle-availability_plugin/actions?query=workflow%3A%22Moodle+Plugin+CI%22+branch%3AMOODLE_405_STABLE)
 
 Moodle availability plugin which lets users restrict resources and activities based on the existence of particular plugins
 
