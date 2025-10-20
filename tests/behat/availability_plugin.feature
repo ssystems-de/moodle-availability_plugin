@@ -28,18 +28,21 @@ Feature: Restrict section visibility by installed plugin
     And I click on "Add restriction" "button"
     And I click on "Installed plugin" "button" in the "Add restriction..." "dialogue"
     And I set the field "Technical plugin name (e.g. mod_assign)" to "<component>"
+    And I set the field "Restriction type" to "<restriction_type>"
     And I press "Save changes"
-    Then I should see "The plugin <component> is installed"
+    Then I should see "The plugin <component> <expected_message>"
     And I log out
     And I log in as "student1"
     And I am on "Course 1" course homepage
     Then I should see "My test section"
-    And I <shouldornot> see "Not available unless: The plugin <component> is installed"
+    And I <shouldornot> see "Not available unless: The plugin <component> <expected_message>"
 
     Examples:
-      | component  | shouldornot |
-      | mod_assign | should not  |
-      | mod_foobar | should      |
+      | component  | restriction_type | expected_message   | shouldornot |
+      | mod_assign | must             | is installed       | should not  |
+      | mod_foobar | must             | is installed       | should      |
+      | mod_assign | must not         | is not installed   | should      |
+      | mod_foobar | must not         | is not installed   | should not  |
 
   Scenario: Reject empty plugin name input at save time
     Given I log in as "admin"
