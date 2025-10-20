@@ -26,6 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['description'] = 'Erfordert ein installiertes Plugin.';
 $string['descriptionwithvalue'] = 'Das Plugin <em>{$a}</em> ist installiert.';
+$string['descriptionwithvalue_not'] = 'Das Plugin <em>{$a}</em> ist nicht installiert.';
 $string['missingpluginname'] = 'Kein Pluginname angegeben';
 $string['plugin:addinstance'] = 'Verfügbarkeitsbedingung "Installiertes Plugin" hinzufügen';
 $string['pluginname'] = 'Voraussetzung: Installiertes Plugin';
