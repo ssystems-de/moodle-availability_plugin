@@ -26,6 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['description'] = 'Requires a plugin to be installed.';
 $string['descriptionwithvalue'] = 'The plugin <em>{$a}</em> is installed.';
+$string['descriptionwithvalue_not'] = 'The plugin <em>{$a}</em> is not installed.';
 $string['missingpluginname'] = 'No plugin name specified';
 $string['plugin:addinstance'] = 'Add "Installed plugin" condition to activities';
 $string['pluginname'] = 'Restriction by installed plugin';
