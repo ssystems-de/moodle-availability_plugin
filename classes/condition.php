@@ -115,9 +115,18 @@ class condition extends \core_availability\condition {
      *   this item
      */
     public function get_description($full, $not, \core_availability\info $info) {
-        return $this->pluginname !== ''
-            ? get_string('descriptionwithvalue', 'availability_plugin', $this->pluginname)
-            : get_string('missingpluginname', 'availability_plugin');
+        // If no plugin name was provided (empty or null), show a fallback string.
+        // This prevents broken or empty labels in the restrict-access UI.
+        if ($this->pluginname === '') {
+            return get_string('missingpluginname', 'availability_plugin');
+        }
+
+        // Return a different description depending on whether the condition is negated.
+        // Moodle passes $not = true when the manager selected "must NOT".
+        // We use two separate language strings so the label changes accordingly.
+        return $not
+            ? get_string('descriptionwithvalue_not', 'availability_plugin', $this->pluginname)
+            : get_string('descriptionwithvalue', 'availability_plugin', $this->pluginname);
     }
 
     /**
