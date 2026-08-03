@@ -18,7 +18,6 @@
  * Availability plugin - Tests for plugin restrictions
  *
  * @package    availability_plugin
- * @copyright  2018 Ulm University <kathrin.osswald@uni-ulm.de>
  * @copyright  2025 Mahmoud Chehada, ssystems GmbH <mchehada@ssystems.de>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -29,7 +28,6 @@ namespace availability_plugin;
  * Unit tests for the condition.
  *
  * @package    availability_plugin
- * @copyright  2018 Ulm University <kathrin.osswald@uni-ulm.de>
  * @copyright  2025 Mahmoud Chehada, ssystems GmbH <mchehada@ssystems.de>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
