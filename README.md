@@ -35,6 +35,8 @@ After installing the plugin, it is ready to use without the need for any configu
 Admins (and other roles to whom you grant the availability/plugin:addinstance capability) can add the "Plugin" availability condition to activities / resources in their courses. While adding the condition, they have to set the technical name of the plugin which has to be installed for the activity / resource to be visible for students in the course.
 
 If you want to learn more about using availability plugins in Moodle, please see https://docs.moodle.org/en/Restrict_access.
+
+
 Restricting usage
 -----------------
 
