@@ -43,7 +43,7 @@ final class condition_test extends \advanced_testcase {
         $this->resetAfterTest();
 
         // Create and save condition.
-        $data = (object)['pluginname' => 'mod_assign'];
+        $data = \availability_plugin\condition::get_json('mod_assign');
         $cond = new \availability_plugin\condition($data);
         $saved = $cond->save();
 
@@ -63,7 +63,7 @@ final class condition_test extends \advanced_testcase {
         $info = $this->createMock(\core_availability\info::class);
 
         // Create condition.
-        $data = (object)['pluginname' => 'mod_quiz'];
+        $data = \availability_plugin\condition::get_json('mod_quiz');
         $cond = new \availability_plugin\condition($data);
 
         // Check assertions.
@@ -82,12 +82,12 @@ final class condition_test extends \advanced_testcase {
         $info = $this->createMock(\core_availability\info::class);
 
         // Case 1: Plugin exists (mod_assign).
-        $data = (object)['pluginname' => 'mod_assign'];
+        $data = \availability_plugin\condition::get_json('mod_assign');
         $cond = new \availability_plugin\condition($data);
         $this->assertTrue($cond->is_available(false, $info, false, 5));
 
         // Case 2: Plugin does not exist (faked).
-        $data = (object)['pluginname' => 'mod_doesnotexist'];
+        $data = \availability_plugin\condition::get_json('mod_doesnotexist');
         $cond = new \availability_plugin\condition($data);
         $this->assertFalse($cond->is_available(false, $info, false, 5));
     }
