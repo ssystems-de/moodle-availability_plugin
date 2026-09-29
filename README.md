@@ -54,7 +54,7 @@ This plugin also introduces these additional capabilities:
 
 ### availability/plugin:addinstance
 
-This capability controls who is able to add password conditions to activities.
+This capability controls who is able to add plugin conditions to activities.
 It is not assigned to any role by default.
 
 
@@ -64,7 +64,7 @@ Scheduled Tasks
 This plugin does not add any additional scheduled tasks.
 
 
-How this plugin works / Pitfalls]
+How this plugin works / Pitfalls
 --------------------------------
 
 This availability condition simply checks if the given plugin is installed or not. To do this check, it requires admins to enter the technical name (frankenstyle name) of the plugin in the condition form. The condition form supports autocompletion of plugin names, but just for the plugins which are currently installed. You are able to set arbitrary other plugin names within the condition form as well, but please double-check if the plugin name is set correctly in this case as otherwise the condition would never match.
