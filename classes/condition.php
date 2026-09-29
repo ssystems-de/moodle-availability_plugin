@@ -139,20 +139,6 @@ class condition extends \core_availability\condition {
     }
 
     /**
-     * Generates a JSON object with plugin information.
-     *
-     * @param object $data The input data containing the plugin name property.
-     * @param object $context The context in which the plugin data is being used.
-     * @return object An object representing the plugin data in JSON format.
-     */
-    public static function get_json($data, $context) {
-        return (object)[
-            'type' => 'plugin',
-            'pluginname' => isset($data->pluginname) ? (string)$data->pluginname : '',
-        ];
-    }
-
-    /**
      * Checks if the functionality is available for all.
      *
      * @param bool $not Determines if the condition should be inverted. Default is false.
@@ -161,5 +147,18 @@ class condition extends \core_availability\condition {
     public function is_available_for_all($not = false) {
         // Return true as the availability condition is not dependent on user-specific data.
         return true;
+    }
+
+    /**
+     * Returns a JSON object which corresponds to a condition of this type.
+     *
+     * Intended for unit testing, as normally the JSON values are constructed
+     * by JavaScript code.
+     *
+     * @param string $pluginname Frankenstyle name of the plugin
+     * @return \stdClass Object representing condition
+     */
+    public static function get_json(string $pluginname): \stdClass {
+        return (object)['type' => 'plugin', 'pluginname' => $pluginname];
     }
 }
