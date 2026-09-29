@@ -50,11 +50,6 @@ class frontend extends \core_availability\frontend {
         }
         sort($components, SORT_STRING);
 
-        // Determine context (module or course).
-        $context = $cm
-            ? \context_module::instance($cm->id)
-            : \context_course::instance($course->id);
-
         return [[
             'components'   => $components,
         ]];
@@ -77,60 +72,11 @@ class frontend extends \core_availability\frontend {
     }
 
     /**
-     * Provides a textual description based on provided data.
-     *
-     * @param array $data The input data array, expected to contain a 'pluginname' key.
-     * @param mixed $not A parameter indicating negation condition (not used in this implementation).
-     * @param bool $short Determines whether the description should be short or detailed (not used in this implementation).
-     * @return string A localized description string containing the plugin name or an error message if 'pluginname' is missing.
-     */
-    public function get_description($data, $not, $short) {
-        $pluginname = isset($data['pluginname']) ? trim((string)$data['pluginname']) : '';
-        if ($pluginname === '') {
-            return get_string('missingpluginname', 'availability_plugin');
-        }
-        return get_string('descriptionwithvalue', 'availability_plugin', s($pluginname));
-    }
-
-    /**
      * Retrieves an array of JavaScript string identifiers.
      *
      * @return array An array of string identifiers used for JavaScript localization or dynamic text loading.
      */
     public function get_javascript_strings() {
-        return ['pluginnameinput', 'missingpluginname', 'descriptionwithvalue'];
-    }
-
-    /**
-     * Populates or processes the provided data set and returns structured information.
-     *
-     * @param array $data A reference to the data array being processed.
-     * @param mixed $not An unused parameter in the current implementation.
-     * @param mixed $jumpto A reference to a variable, its purpose is not utilized in the current logic.
-     * @return array An associative array containing a sanitized 'pluginname' key with its corresponding value.
-     *               Defaults to an empty string if conditions are not met.
-     */
-    public function fill_set_data(&$data, $not, &$jumpto) {
-        if (!empty($data) && is_array($data) && array_key_exists('pluginname', $data)) {
-            return ['pluginname' => trim((string)$data['pluginname'])];
-        }
-        return ['pluginname' => ''];
-    }
-
-    /**
-     * Validates the configuration data for a given plugin.
-     *
-     * @param array $data The configuration data to validate.
-     * @param mixed $not A placeholder parameter, not used directly in validation.
-     * @param \stdClass|null $info Additional information or context, null if not provided.
-     * @return array An array of error messages, empty if no validation errors are found.
-     */
-    public function validate_config($data, $not, ?\stdClass $info = null) {
-        $errors = [];
-        $pluginname = trim((string)($data['pluginname'] ?? ''));
-        if ($pluginname === '') {
-            $errors[] = get_string('missingpluginname', 'availability_plugin');
-        }
-        return $errors;
+        return ['pluginnameinput', 'missingpluginname'];
     }
 }
