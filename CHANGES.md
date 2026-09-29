@@ -4,7 +4,7 @@ moodle-availability_plugin
 Changes
 -------
 
-### Unreleased
+### v5.0-r2
 
 * 2026-09-29 - Bugfix: Escape the plugin name in the condition description to prevent XSS
 * 2026-09-29 - Align condition::get_json() with the core convention and use it in the unit tests
