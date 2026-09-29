@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2026-09-29 - Bugfix: Escape the plugin name in the condition description to prevent XSS
 * 2026-09-29 - Align condition::get_json() with the core convention and use it in the unit tests
 * 2026-09-29 - Cleanup some dead code findings
 * 2026-09-29 - Cleanup some documentation glitches in README

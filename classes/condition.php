@@ -124,9 +124,10 @@ class condition extends \core_availability\condition {
         // Return a different description depending on whether the condition is negated.
         // Moodle passes $not = true when the manager selected "must NOT".
         // We use two separate language strings so the label changes accordingly.
+        // The plugin name is user input and must be escaped as the description is output as HTML.
         return $not
-            ? get_string('descriptionwithvalue_not', 'availability_plugin', $this->pluginname)
-            : get_string('descriptionwithvalue', 'availability_plugin', $this->pluginname);
+            ? get_string('descriptionwithvalue_not', 'availability_plugin', s($this->pluginname))
+            : get_string('descriptionwithvalue', 'availability_plugin', s($this->pluginname));
     }
 
     /**
