@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2026-09-29 - Cleanup some dead code findings
 * 2026-09-29 - Cleanup some documentation glitches in README
 
 ### v5.0-r1
