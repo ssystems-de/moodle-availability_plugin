@@ -91,4 +91,26 @@ final class condition_test extends \advanced_testcase {
         $cond = new \availability_plugin\condition($data);
         $this->assertFalse($cond->is_available(false, $info, false, 5));
     }
+
+    /**
+     * Test that the plugin name is escaped in the description.
+     *
+     * @covers \availability_plugin\condition::get_description
+     */
+    public function test_get_description_escapes_pluginname(): void {
+        // Startup.
+        $this->resetAfterTest();
+        $info = $this->createMock(\core_availability\info::class);
+
+        // Create condition with HTML in the plugin name.
+        $data = \availability_plugin\condition::get_json('<img src=x onerror=alert(1)>');
+        $cond = new \availability_plugin\condition($data);
+
+        // Check assertions for both the normal and the negated description.
+        foreach ([false, true] as $not) {
+            $description = $cond->get_description(true, $not, $info);
+            $this->assertStringNotContainsString('<img', $description);
+            $this->assertStringContainsString('&lt;img src=x onerror=alert(1)&gt;', $description);
+        }
+    }
 }
