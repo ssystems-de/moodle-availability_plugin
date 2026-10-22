@@ -4,6 +4,10 @@ moodle-availability_plugin
 Changes
 -------
 
+### Unreleased
+
+* 2026-10-05 - Prepare compatibility for Moodle 5.3.
+
 ### v5.2-r2
 
 * 2026-09-29 - Bugfix: Escape the plugin name in the condition description to prevent XSS
