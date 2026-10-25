@@ -4,6 +4,10 @@ moodle-availability_plugin
 Changes
 -------
 
+### Unreleased
+
+* 2026-10-25 - Bugfix: condition::is_available_for_all() returned true regardless of the real availability result
+
 ### v4.5-r4
 
 * 2026-09-29 - Bugfix: Escape the plugin name in the condition description to prevent XSS
