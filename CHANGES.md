@@ -4,7 +4,7 @@ moodle-availability_plugin
 Changes
 -------
 
-### Unreleased
+### v5.1-r3
 
 * 2026-10-25 - Bugfix: Only ship the list of installed plugins to users who are allowed to add the condition
 * 2026-10-25 - Cleanup: Remove the unused canconfigure parameter from the YUI form module
