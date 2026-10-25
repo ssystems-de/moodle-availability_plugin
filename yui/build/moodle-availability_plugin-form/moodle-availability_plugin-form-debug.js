@@ -31,9 +31,6 @@ M.availability_plugin.form.initInner = function(params) {
 
     // List of all available Moodle plugins for autocomplete.
     M.availability_plugin._components = cfg.components || [];
-
-    // User permission: true = can configure, false = view only.
-    M.availability_plugin._canconfigure = (cfg.canconfigure !== undefined) ? cfg.canconfigure : true;
 };
 
 /**
