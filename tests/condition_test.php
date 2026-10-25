@@ -93,6 +93,47 @@ final class condition_test extends \advanced_testcase {
     }
 
     /**
+     * Data provider for test_is_available_for_all().
+     *
+     * @return array
+     */
+    public static function is_available_for_all_provider(): array {
+        return [
+            'Plugin exists' => ['mod_assign', false, true],
+            'Plugin exists, negated' => ['mod_assign', true, false],
+            'Plugin does not exist' => ['mod_doesnotexist', false, false],
+            'Plugin does not exist, negated' => ['mod_doesnotexist', true, true],
+            'Empty plugin name' => ['', false, false],
+            'Empty plugin name, negated' => ['', true, true],
+        ];
+    }
+
+    /**
+     * Test that is_available_for_all() returns the real availability result
+     * and is consistent with is_available().
+     *
+     * @dataProvider is_available_for_all_provider
+     * @covers \availability_plugin\condition::is_available_for_all
+     * @covers \availability_plugin\condition::is_available
+     * @param string $pluginname The plugin name of the condition
+     * @param bool $not Whether the condition is negated
+     * @param bool $expected The expected availability
+     */
+    public function test_is_available_for_all(string $pluginname, bool $not, bool $expected): void {
+        // Startup.
+        $this->resetAfterTest();
+        $info = $this->createMock(\core_availability\info::class);
+
+        // Create condition.
+        $data = \availability_plugin\condition::get_json($pluginname);
+        $cond = new \availability_plugin\condition($data);
+
+        // Check assertions.
+        $this->assertSame($expected, $cond->is_available_for_all($not));
+        $this->assertSame($expected, $cond->is_available($not, $info, false, 5));
+    }
+
+    /**
      * Test that the plugin name is escaped in the description.
      *
      * @covers \availability_plugin\condition::get_description
