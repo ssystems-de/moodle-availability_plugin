@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2026-10-25 - Bugfix: Only ship the list of installed plugins to users who are allowed to add the condition
 * 2026-10-25 - Cleanup: Remove the unused canconfigure parameter from the YUI form module
 * 2026-10-25 - Bugfix: condition::is_available_for_all() returned true regardless of the real availability result
 

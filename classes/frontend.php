@@ -41,6 +41,14 @@ class frontend extends \core_availability\frontend {
      * @return array An associative array containing initialization components for JavaScript.
      */
     public function get_javascript_init_params($course, ?\cm_info $cm = null, ?\section_info $section = null) {
+        // Core requests these parameters for every editor, regardless of allow_add().
+        // Only ship the list of installed plugins to users who are allowed to add the condition.
+        if (!$this->allow_add($course, $cm, $section)) {
+            return [[
+                'components'   => [],
+            ]];
+        }
+
         $components = [];
         $pm = \core_plugin_manager::instance();
         foreach ($pm->get_plugins() as $type => $typedplugins) {
