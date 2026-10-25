@@ -83,12 +83,8 @@ class condition extends \core_availability\condition {
      * @return bool True if available
      */
     public function is_available($not, \core_availability\info $info, $grabthelot, $userid) {
-        if ($this->pluginname === '') {
-            return $not ? true : false;
-        }
-        $exists = (bool)\core_component::get_component_directory($this->pluginname);
-        $result = $exists;
-        return $not ? !$result : $result;
+        // The result does not depend on the user, so it is the same as the result for all users.
+        return $this->is_available_for_all($not);
     }
 
     /**
@@ -140,14 +136,20 @@ class condition extends \core_availability\condition {
     }
 
     /**
-     * Checks if the functionality is available for all.
+     * Checks whether this condition currently makes the item available for all users.
      *
-     * @param bool $not Determines if the condition should be inverted. Default is false.
-     * @return bool Returns true.
+     * As the condition does not depend on user-specific data, this is the actual
+     * availability result which also applies to every single user.
+     *
+     * @param bool $not Set true if we are inverting the condition
+     * @return bool True if the item is available for all users
      */
     public function is_available_for_all($not = false) {
-        // Return true as the availability condition is not dependent on user-specific data.
-        return true;
+        if ($this->pluginname === '') {
+            return $not;
+        }
+        $exists = (bool)\core_component::get_component_directory($this->pluginname);
+        return $not ? !$exists : $exists;
     }
 
     /**
