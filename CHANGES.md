@@ -4,6 +4,10 @@ moodle-availability_plugin
 Changes
 -------
 
+### Unreleased
+
+* 2026-10-25 - Bugfix: condition::is_available_for_all() returned true regardless of the real availability result
+
 ### v5.3-r1
 
 * 2026-10-05 - Prepare compatibility for Moodle 5.3.
