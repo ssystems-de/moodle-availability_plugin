@@ -53,6 +53,11 @@ class frontend extends \core_availability\frontend {
         $pm = \core_plugin_manager::instance();
         foreach ($pm->get_plugins() as $type => $typedplugins) {
             foreach ($typedplugins as $name => $info) {
+                // Only offer plugins which the condition treats as installed, i.e. neither missing from disk
+                // nor waiting for their installation.
+                if (empty($info->rootdir) || $info->versiondb === null) {
+                    continue;
+                }
                 $components[] = $type . '_' . $name;
             }
         }
