@@ -4,6 +4,10 @@ moodle-availability_plugin
 Changes
 -------
 
+### Unreleased
+
+* 2026-10-27 - Documentation: Clarify in the README that the addinstance capability only controls the condition editor user interface and is not enforced when saving
+
 ### v4.5-r5
 
 * 2026-10-25 - Bugfix: Only ship the list of installed plugins to users who are allowed to add the condition

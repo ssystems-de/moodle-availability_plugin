@@ -44,7 +44,13 @@ The feature which availability_plugin provides is necessary / useful in speciali
 
 Because of that and in contrast to other availability plugins, availability_plugin supports a capability availability/plugin:addinstance which lets you control who is able to add this condition to activities / resources and who is not. By default, the capability is not granted to any role at plugin installation time and thus just available to admins. Feel free to change this setup within your Moodle role configuration as needed.
 
-Additionaly you should be aware of this behaviour: If teacher A who has this capability adds the condition to an activity / resource and teacher B who has not the capability edits this activity / resource, B is able to see, edit and delete the condition of this particular activity / resource, but is still not allowed to add the condition to another activity / resource in the course.
+Please be aware that this capability only controls the condition editor user interface, it is not an access-control boundary:
+
+* The capability decides whether the "Plugin" condition is offered in the "Add restriction" dialogue and whether the list of installed plugins is sent to the browser for autocompletion.
+* Moodle core does not check the capability again when the activity / resource or section settings form is saved. A user who is able to edit an activity / resource or section can therefore still add the condition by manipulating the submitted form data, even without this capability.
+* If teacher A who has this capability adds the condition to an activity / resource and teacher B who has not the capability edits this activity / resource, B is able to see, edit and delete the condition of this particular activity / resource.
+
+The impact of this is limited: The condition can only be added to content which the user is able to edit anyway and it only reveals whether a plugin with a given name is installed on the server. However, please do not rely on this capability if you need to strictly prevent users from adding the condition.
 
 
 Capabilities
@@ -54,8 +60,9 @@ This plugin also introduces these additional capabilities:
 
 ### availability/plugin:addinstance
 
-This capability controls who is able to add plugin conditions to activities.
+This capability controls who is offered the plugin condition in the condition editor user interface of activities and sections.
 It is not assigned to any role by default.
+It only controls the user interface and is not enforced when the form is saved, see the "Restricting usage" section above.
 
 
 Scheduled Tasks
