@@ -105,7 +105,34 @@ final class condition_test extends \advanced_testcase {
             'Plugin does not exist, negated' => ['mod_doesnotexist', true, true],
             'Empty plugin name' => ['', false, false],
             'Empty plugin name, negated' => ['', true, true],
+            'Bare plugin name' => ['assign', false, true],
+            'Bare plugin name, negated' => ['assign', true, false],
+            'Core' => ['core', false, false],
+            'Core, negated' => ['core', true, true],
+            'Core subsystem' => ['core_course', false, false],
+            'Core subsystem, negated' => ['core_course', true, true],
         ];
+    }
+
+    /**
+     * Test that a plugin whose code is present on disk but whose version is not registered
+     * (i.e. which is waiting for its installation) is not treated as installed.
+     *
+     * @covers \availability_plugin\condition::is_available_for_all
+     */
+    public function test_is_available_for_all_plugin_not_installed_yet(): void {
+        // Startup.
+        $this->resetAfterTest();
+
+        // Create condition.
+        $data = \availability_plugin\condition::get_json('mod_assign');
+        $cond = new \availability_plugin\condition($data);
+
+        // Check assertions.
+        $this->assertTrue($cond->is_available_for_all(false));
+        unset_config('version', 'mod_assign');
+        $this->assertFalse($cond->is_available_for_all(false));
+        $this->assertTrue($cond->is_available_for_all(true));
     }
 
     /**
