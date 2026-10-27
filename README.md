@@ -74,7 +74,9 @@ This plugin does not add any additional scheduled tasks.
 How this plugin works / Pitfalls
 --------------------------------
 
-This availability condition simply checks if the given plugin is installed or not. To do this check, it requires admins to enter the technical name (frankenstyle name) of the plugin in the condition form. The condition form supports autocompletion of plugin names, but just for the plugins which are currently installed. You are able to set arbitrary other plugin names within the condition form as well, but please double-check if the plugin name is set correctly in this case as otherwise the condition would never match.
+This availability condition simply checks if the given plugin is installed or not. A plugin is considered installed if its code is present on disk and its installation has been completed. Plugins which are missing from disk or which are waiting for their installation are not considered installed. Whether the plugin is enabled or disabled does not matter. Moodle core and its subsystems (e.g. core_course) are not plugins and are never considered installed.
+
+To do this check, it requires admins to enter the technical name (frankenstyle name) of the plugin in the condition form. The condition form supports autocompletion of plugin names, but just for the plugins which are currently installed. You are able to set arbitrary other plugin names within the condition form as well, but please double-check if the plugin name is set correctly in this case as otherwise the condition would never match.
 
 
 Theme support
