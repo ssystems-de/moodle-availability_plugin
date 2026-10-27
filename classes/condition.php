@@ -148,7 +148,18 @@ class condition extends \core_availability\condition {
         if ($this->pluginname === '') {
             return $not;
         }
-        $exists = (bool)\core_component::get_component_directory($this->pluginname);
+        // Bare names are resolved like core does it (e.g. 'assign' to 'mod_assign').
+        [$type, $name] = \core_component::normalize_component($this->pluginname);
+        if ($type === 'core') {
+            // Core and its subsystems are not plugins.
+            $exists = false;
+        } else {
+            // A plugin counts as installed if its code is present on disk and its version is registered,
+            // i.e. it is neither missing from disk nor waiting for its installation.
+            $component = $type . '_' . $name;
+            $exists = \core_component::get_component_directory($component) !== null
+                && get_config($component, 'version') !== false;
+        }
         return $not ? !$exists : $exists;
     }
 
