@@ -4,7 +4,7 @@ moodle-availability_plugin
 Changes
 -------
 
-### Unreleased
+### v5.1-r4
 
 * 2026-10-27 - Bugfix: Only treat a plugin as installed if its code is present on disk and its version is registered, and never treat core or core subsystems as installed plugins
 * 2026-10-27 - Bugfix: Do not offer plugins which are missing from disk or not yet installed in the condition form autocompletion
