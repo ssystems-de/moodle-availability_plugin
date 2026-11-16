@@ -39,12 +39,15 @@ class condition extends \core_availability\condition {
      * Constructor method.
      *
      * @param object $structure The structure containing the plugin name property.
-     * @return void
+     * @throws \coding_exception If the plugin name is set, but is not a string.
      */
     public function __construct($structure) {
-        $this->pluginname = isset($structure->pluginname) && $structure->pluginname !== ''
-            ? strtolower(trim((string)$structure->pluginname))
-            : '';
+        // A missing plugin name is tolerated (and handled as empty plugin name), but a plugin name of a wrong type
+        // is not. Core expects conditions to throw a coding_exception if their structure is invalid.
+        if (isset($structure->pluginname) && !is_string($structure->pluginname)) {
+            throw new \coding_exception('Invalid ->pluginname for plugin condition');
+        }
+        $this->pluginname = isset($structure->pluginname) ? strtolower(trim($structure->pluginname)) : '';
     }
 
     /**
