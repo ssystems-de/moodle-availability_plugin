@@ -53,6 +53,48 @@ final class condition_test extends \advanced_testcase {
     }
 
     /**
+     * Test that the constructor tolerates a missing or empty plugin name.
+     *
+     * @covers \availability_plugin\condition::__construct
+     */
+    public function test_constructor_missing_pluginname(): void {
+        // Missing plugin name.
+        $cond = new \availability_plugin\condition((object)['type' => 'plugin']);
+        $this->assertSame('', $cond->save()->pluginname);
+
+        // Empty plugin name.
+        $cond = new \availability_plugin\condition((object)['type' => 'plugin', 'pluginname' => '']);
+        $this->assertSame('', $cond->save()->pluginname);
+    }
+
+    /**
+     * Data provider for test_constructor_invalid_pluginname().
+     *
+     * @return array
+     */
+    public static function constructor_invalid_pluginname_provider(): array {
+        return [
+            'Array' => [['mod_assign']],
+            'Object' => [(object)['name' => 'mod_assign']],
+            'Integer' => [123],
+            'Boolean' => [true],
+        ];
+    }
+
+    /**
+     * Test that the constructor rejects a plugin name which is not a string.
+     *
+     * @dataProvider constructor_invalid_pluginname_provider
+     * @covers \availability_plugin\condition::__construct
+     * @param mixed $pluginname The invalid plugin name
+     */
+    public function test_constructor_invalid_pluginname($pluginname): void {
+        $this->expectException(\coding_exception::class);
+        $this->expectExceptionMessage('Invalid ->pluginname for plugin condition');
+        new \availability_plugin\condition((object)['type' => 'plugin', 'pluginname' => $pluginname]);
+    }
+
+    /**
      * Test is_available() with negation logic.
      *
      * @covers \availability_plugin\condition::is_available
