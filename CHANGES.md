@@ -4,6 +4,10 @@ moodle-availability_plugin
 Changes
 -------
 
+### Unreleased
+
+* 2026-11-16 - Bugfix: Reject a condition whose plugin name is not a string with a coding_exception instead of casting it
+
 ### v4.5-r6
 
 * 2026-10-27 - Bugfix: Only treat a plugin as installed if its code is present on disk and its version is registered, and never treat core or core subsystems as installed plugins
