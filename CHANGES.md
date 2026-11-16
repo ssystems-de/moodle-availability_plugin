@@ -4,7 +4,7 @@ moodle-availability_plugin
 Changes
 -------
 
-### Unreleased
+### v5.0-r5
 
 * 2026-11-16 - Bugfix: Reject a condition whose plugin name is not a string with a coding_exception instead of casting it
 
